@@ -17,14 +17,16 @@ The extracted information is manually verified and mapped to EDAM data type and 
 - Evaluate the accuracy of AI-generated suggestions.
 
 ## Repository Structure
+
+```text
 bioinformatics-tool-io-analysis/
-│
+
 ├── README.md
 │
 ├── tools/
-│ ├── FastQC/
-│ ├── BWA/
-│ └── SAMtools/
+│   ├── FastQC/
+│   ├── BWA/
+│   └── SAMtools/
 │
 ├── results/
 │
@@ -33,6 +35,7 @@ bioinformatics-tool-io-analysis/
 ├── report/
 │
 └── references/
+```
 
 ## Selected Tools
 
