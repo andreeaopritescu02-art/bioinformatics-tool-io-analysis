@@ -89,5 +89,21 @@ The coding agent also identified supporting files generated inside the report ar
 - Optional XSL-FO file for report conversion.
 
 These were considered secondary outputs because they are components of the main QC report.
+## EDAM Suggestions
+
+The coding agent was asked to suggest EDAM terms for identified inputs and outputs.
+
+Suggested mappings:
+
+| Item | EDAM term | EDAM ID | Confidence |
+|---|---|---|---|
+| FASTQ | FASTQ | EDAM:format_1930 | High |
+| BAM | BAM | EDAM:format_2572 | High |
+| SAM | SAM | EDAM:format_2573 | High |
+| FAST5 | FAST5 | EDAM:format_3854 | Medium |
+| HTML report | HTML | EDAM:format_2332 | High |
+| ZIP archive | ZIP | EDAM:format_3987 | High |
+
+The agent recommended manual verification for uncertain data-type mappings.
 
 Manual verification is required before accepting all suggested formats.
