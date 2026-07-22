@@ -17,5 +17,27 @@ The extracted information is manually verified and mapped to EDAM data type and 
 - Evaluate the accuracy of AI-generated suggestions.
 
 ## Repository Structure
+bioinformatics-tool-io-analysis/
+│
+├── README.md
+│
+├── tools/
+│ ├── FastQC/
+│ ├── BWA/
+│ └── SAMtools/
+│
+├── results/
+│
+├── prompts/
+│
+├── report/
+│
+└── references/
 
-...
+## Selected Tools
+
+The project will analyze several bioinformatics tools with public repositories:
+
+- FastQC
+- BWA
+- SAMtools
