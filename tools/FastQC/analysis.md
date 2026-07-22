@@ -44,4 +44,12 @@ FastQC README states that the program generates HTML reports for processed files
 
 ## AI Evaluation
 
-(To be completed after coding agent analysis)
+## AI Evaluation
+
+The coding agent was able to suggest suitable EDAM format terms for common file formats such as FASTQ, BAM, SAM, HTML and ZIP.
+
+For less standardized outputs, such as FastQC internal text reports, the agent correctly identified the need for both:
+- a file format annotation;
+- a semantic data type annotation.
+
+However, the agent showed uncertainty for some EDAM data identifiers and recommended manual verification.
