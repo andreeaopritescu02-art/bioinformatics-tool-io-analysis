@@ -67,4 +67,27 @@ These require additional verification.
 
 The coding agent successfully identified the main input formats and provided evidence from multiple repository locations.
 
+# FastQC AI Analysis
+
+## Output File Analysis
+
+### Main outputs identified by GitHub Copilot
+
+| Output | Format | Purpose | Evidence |
+|---|---|---|---|
+| <sample>_fastqc.html | HTML | Interactive quality control report | HTMLReportArchive.java, integration tests |
+| <sample>_fastqc.zip | ZIP | Archive containing the complete QC report | HTMLReportArchive.java |
+| fastqc_data.txt | TXT | Machine-readable QC results | HTMLReportArchive.java, test snapshots |
+| summary.txt | TXT | Summary of module results | HTMLReportArchive.java |
+
+### Additional generated files
+
+The coding agent also identified supporting files generated inside the report archive:
+
+- PNG and SVG images used for plots.
+- PNG icons used in the HTML report.
+- Optional XSL-FO file for report conversion.
+
+These were considered secondary outputs because they are components of the main QC report.
+
 Manual verification is required before accepting all suggested formats.
