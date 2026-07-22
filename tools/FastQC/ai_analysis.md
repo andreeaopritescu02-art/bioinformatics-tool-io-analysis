@@ -1,0 +1,70 @@
+# FastQC AI Analysis
+
+## Coding Agent
+
+GitHub Copilot
+
+## Prompt
+
+Analyze this repository and identify all input file formats accepted by FastQC.
+
+For each input:
+- provide the file format;
+- describe the biological data type;
+- provide evidence from README files, documentation, examples, tests, or source code.
+
+---
+
+## AI Results
+
+### FASTQ
+
+Biological data:
+Raw sequencing reads with per-base quality scores.
+
+Evidence found by AI:
+- README.md mentions FastQ files.
+- INSTALL.md provides FASTQ usage examples.
+- FastQFile.java implements FASTQ reading.
+
+---
+
+### BAM / SAM / UBAM
+
+Biological data:
+Aligned or unaligned sequencing reads.
+
+Evidence found by AI:
+- README.md mentions BAM input.
+- SequenceFactory.java detects BAM/SAM/UBAM extensions.
+- fastqc.pl supports bam and sam modes.
+
+---
+
+### FAST5
+
+Biological data:
+Oxford Nanopore sequencing files.
+
+Evidence found by AI:
+- INSTALL.md describes nanopore FAST5 processing.
+- Fast5File.java handles FAST5 files.
+
+---
+
+### Other formats
+
+AI identified:
+- .compact-reads
+- .goby
+- stdin streaming
+
+These require additional verification.
+
+---
+
+## AI Evaluation
+
+The coding agent successfully identified the main input formats and provided evidence from multiple repository locations.
+
+Manual verification is required before accepting all suggested formats.
