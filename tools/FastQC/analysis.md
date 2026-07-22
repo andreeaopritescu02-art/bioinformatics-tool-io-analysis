@@ -29,7 +29,18 @@ FastQC README states that the program generates HTML reports for processed files
 
 ## EDAM Mapping
 
-(To be completed after EDAM verification)
+## EDAM Mapping
+
+| Input/Output | EDAM term | EDAM ID | Type | Confidence |
+|---|---|---|---|---|
+| FASTQ | FASTQ | EDAM:format_1930 | Format | High |
+| BAM | BAM | EDAM:format_2572 | Format | High |
+| SAM | SAM | EDAM:format_2573 | Format | High |
+| FAST5 | FAST5 | EDAM:format_3854 | Format | Medium |
+| HTML report | HTML | EDAM:format_2332 | Format | High |
+| ZIP archive | ZIP | EDAM:format_3987 | Format | High |
+| fastqc_data.txt | Plain text + QC report | EDAM format/data terms | Format + Data | Medium |
+| summary.txt | Plain text + QC summary | EDAM format/data terms | Format + Data | Medium |
 
 ## AI Evaluation
 
