@@ -107,14 +107,14 @@ The agent provided evidence from:
 
 | Input/Output | EDAM term | EDAM ID | Type | Confidence |
 |---|---|---|---|---|
-| FASTQ | FASTQ | EDAM:format_1930 | Format | High |
-| BAM | BAM | EDAM:format_2572 | Format | High |
-| SAM | SAM | EDAM:format_2573 | Format | High |
-| FAST5 | FAST5 | EDAM:format_3854 | Format | Medium |
-| HTML report | HTML | EDAM:format_2332 | Format | High |
-| ZIP archive | ZIP | EDAM:format_3987 | Format | High |
-fastqc_data.txt | Plain text + QC report | To be verified using the official EDAM ontology | Format + Data | Medium
-summary.txt | Plain text + QC summary | To be verified using the official EDAM ontology | Format + Data | Medium
+| FASTQ | FASTQ | EDAM:format_1930 | Format | High - verified |
+| BAM | BAM | EDAM:format_2572 | Format | High - verified |
+| SAM | SAM | EDAM:format_2573 | Format | High - verified |
+| FAST5 | FAST5 | EDAM:format_3854 | Format | Medium - verified |
+| HTML report | HTML | EDAM:format_2331 | Format | High - verified |
+| ZIP archive | ZIP format | EDAM:format_3987 | Format | High - verified |
+| fastqc_data.txt | Plain text + QC report | Requires data term verification | Format + Data | Medium |
+| summary.txt | Plain text + QC summary | Requires data term verification | Format + Data | Medium |
 ---
 
 ## AI Evaluation
