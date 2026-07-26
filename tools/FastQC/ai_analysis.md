@@ -134,7 +134,7 @@ Suggested mappings:
 | BAM | BAM | EDAM:format_2572 | High |
 | SAM | SAM | EDAM:format_2573 | High |
 | FAST5 | FAST5 | EDAM:format_3854 | Medium |
-| HTML report | HTML | EDAM:format_2332 | High |
+| HTML | EDAM:format_2332 (incorrect, manually corrected to EDAM:format_2331) | Medium
 | ZIP archive | ZIP | EDAM:format_3987 | High |
 
 The agent recommended manual verification for uncertain data-type mappings.
