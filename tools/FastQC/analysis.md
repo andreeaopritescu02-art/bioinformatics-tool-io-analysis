@@ -56,8 +56,6 @@ Integration tests confirm the generated report structure.
 
 ## Coding Agent Analysis
 
-## Coding Agent Analysis
-
 The coding agent (GitHub Copilot) was used to inspect the FastQC repository.
 
 The detailed AI outputs and prompts are available in:
