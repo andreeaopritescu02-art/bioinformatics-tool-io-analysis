@@ -127,20 +127,24 @@ The output generation process was successfully linked to the responsible source 
 The coding agent was asked to suggest EDAM terms for identified inputs and outputs.
 
 Suggested mappings:
-
 | Item | EDAM term | EDAM ID | Confidence |
 |---|---|---|---|
-| FASTQ | FASTQ | EDAM:format_1930 | High |
-| BAM | BAM | EDAM:format_2572 | High |
-| SAM | SAM | EDAM:format_2573 | High |
-| FAST5 | FAST5 | EDAM:format_3854 | Medium |
-| HTML | EDAM:format_2332 (incorrect, manually corrected to EDAM:format_2331) | Medium
-| ZIP archive | ZIP | EDAM:format_3987 | High |
+| FASTQ | FASTQ | EDAM:format_1930 | High - verified |
+| BAM | BAM | EDAM:format_2572 | High - verified |
+| SAM | SAM | EDAM:format_2573 | High - verified |
+| FAST5 | FAST5 | EDAM:format_3854 | Medium - verified |
+| HTML report | HTML | EDAM:format_2331 | High - verified (AI suggested EDAM:format_2332, manually corrected) |
+| ZIP archive | ZIP | EDAM:format_3987 | High - verified |
 
-The agent recommended manual verification for uncertain data-type mappings.
+The agent recommended manual verification for uncertain EDAM mappings.
+
+During manual verification, one incorrect EDAM suggestion was identified:
+- HTML was suggested by the coding agent as EDAM:format_2332.
+- The official EDAM ontology defines HTML as EDAM:format_2331.
+
+This shows that AI-generated EDAM mappings can be useful but still require manual validation.
 
 Manual verification is required before accepting all suggested formats.
-
 ---
 
 # Additional Prompt Experiments
@@ -212,5 +216,5 @@ However, manual verification remained necessary because:
 
 - some formats were only visible in source code or tests;
 - some EDAM data mappings required confirmation using the official EDAM ontology.
-
-Overall, GitHub Copilot reduced the time required for repository exploration but did not replace manual curation.
+- 
+The EDAM verification showed that most AI suggestions were correct. However, one incorrect mapping was identified: HTML was suggested as EDAM:format_2332, while the official EDAM ontology defines HTML as EDAM:format_2331. This demonstrates the importance of manual ontology verification when using coding agents for metadata curation.
