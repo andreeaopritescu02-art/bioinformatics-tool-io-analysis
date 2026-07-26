@@ -133,14 +133,14 @@ Suggested mappings:
 | BAM | BAM | EDAM:format_2572 | High - verified |
 | SAM | SAM | EDAM:format_2573 | High - verified |
 | FAST5 | FAST5 | EDAM:format_3854 | Medium - verified |
-| HTML report | HTML | EDAM:format_2331 | High - verified (AI suggested EDAM:format_2332, manually corrected) |
+| HTML report | HTML | EDAM:format_2331 | High - verified |
 | ZIP archive | ZIP | EDAM:format_3987 | High - verified |
 
-The agent recommended manual verification for uncertain EDAM mappings.
+During EDAM verification, one incorrect mapping was identified. The coding agent suggested EDAM:format_2332 for HTML, but the official EDAM ontology defines HTML as EDAM:format_2331. The mapping was manually corrected after verification.
 
-During manual verification, one incorrect EDAM suggestion was identified:
-- HTML was suggested by the coding agent as EDAM:format_2332.
-- The official EDAM ontology defines HTML as EDAM:format_2331.
+This demonstrates the importance of manual ontology verification when using coding agents for metadata curation.
+
+The agent recommended manual verification for uncertain EDAM mappings.
 
 This shows that AI-generated EDAM mappings can be useful but still require manual validation.
 
