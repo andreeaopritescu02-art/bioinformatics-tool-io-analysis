@@ -1,8 +1,8 @@
 # FastQC - Coding Agent Prompts
 
-These prompts were designed to evaluate whether coding agents can identify input and output formats of a bioinformatics tool and suggest appropriate EDAM ontology terms.
+These prompts are designed to evaluate whether coding agents can identify input and output formats of a bioinformatics tool, provide repository-based evidence, verify EDAM ontology mappings, and return the results in a structured format.
 
-The same prompts should be used, as far as possible, with different AI coding agents and local AI models to allow comparison of their results.
+The prompts should be used, as far as possible, with different AI coding agents and AI models to allow comparison of their results.
 
 ---
 
@@ -31,6 +31,8 @@ Search for evidence in:
 For each finding, cite the specific repository file and, where possible, the relevant class, method, or code section.
 
 Do not assume that a format is supported only because it is mentioned in a general context. Distinguish between explicitly supported formats and formats suggested only by indirect evidence.
+
+If a format appears only in a GUI file filter or documentation but no corresponding parser or processing implementation can be found, explicitly classify it as unverified or unsupported rather than treating it as a confirmed input format.
 
 ---
 
@@ -63,7 +65,7 @@ Distinguish between the main outputs produced for the user and supporting files 
 
 ---
 
-## Prompt 3 - Suggest EDAM ontology mappings
+## Prompt 3 - Suggest and verify EDAM ontology mappings
 
 Based only on the input and output formats identified in Prompts 1 and 2, suggest appropriate EDAM ontology terms.
 
@@ -72,19 +74,48 @@ For each input/output, provide:
 * EDAM term name;
 * EDAM ID (CURIE);
 * whether the term represents a data type or a file format;
+* match type: exact, broader, related, or unavailable;
 * confidence level (High, Medium, or Low);
 * a short explanation of why the term is appropriate.
 
+### EDAM verification requirement
+
+Do not rely only on the model's internal knowledge to provide EDAM identifiers.
+
+For every proposed EDAM ID, verify the identifier against the official EDAM ontology.
+
+Use the official EDAM ontology file:
+
+https://edamontology.org/EDAM.owl
+
+or an available local copy of `EDAM.owl`.
+
+The verification must establish that:
+
+1. the EDAM ID actually exists;
+2. the ID corresponds to the stated EDAM term;
+3. the term belongs to the appropriate EDAM branch;
+4. the mapping is appropriate for the identified file format or data type.
+
+If programmatic verification is possible, perform it rather than relying on memory or a web search result.
+
 Do not invent EDAM identifiers.
 
-If you are uncertain about an EDAM term or identifier, explicitly mark it as uncertain rather than guessing.
+If an EDAM identifier cannot be verified, return:
+
+* `edam_id: null`;
+* `verified: false`;
+* an explanation of why verification could not be completed.
+
+Do not replace an unverified identifier with a guessed identifier.
 
 Distinguish between:
 
 * the biological/data type represented by the file;
-* the physical file format.
+* the physical file format;
+* compression or container formats.
 
-The suggested mappings will be manually checked against the official EDAM ontology.
+For example, gzip should normally be treated as a compression mechanism around the underlying biological file format rather than as a replacement for the underlying format.
 
 ---
 
@@ -96,9 +127,11 @@ For each identified item, provide a final assessment containing:
 
 * identified input/output;
 * format;
+* extension or representation;
 * data type, where applicable;
 * repository evidence;
 * suggested EDAM term and ID, where applicable;
+* whether the EDAM mapping was programmatically verified;
 * confidence level;
 * potential uncertainty or limitation.
 
@@ -108,8 +141,102 @@ Identify any findings that:
 * are supported only by indirect evidence;
 * may represent an internal or secondary format rather than a primary tool input/output;
 * require manual verification;
-* may have an uncertain EDAM mapping.
+* have an uncertain EDAM mapping;
+* have an EDAM mapping that is broader or related rather than exact.
 
-Do not repeat the full repository analysis. Focus only on consolidating the findings and identifying uncertainties, conflicts, or items requiring manual verification.
+Do not repeat the full repository analysis. Focus on consolidating the findings and identifying uncertainties, conflicts, or items requiring manual verification.
 
-Explain briefly which findings you consider reliable and which should not be accepted without manual verification.
+Explain briefly which findings are reliable and which should not be accepted without manual verification.
+
+---
+
+## Prompt 5 - Structured JSON output
+
+Using the verified findings from Prompts 1-4, produce a machine-readable JSON representation of the FastQC input/output analysis.
+
+The JSON must follow this structure:
+
+```json
+{
+  "tool": "FastQC",
+  "repository": "https://github.com/s-andrews/FastQC",
+  "inputs": [
+    {
+      "name": "",
+      "extensions": [],
+      "data_type": "",
+      "primary_or_additional": "",
+      "evidence": [
+        {
+          "file": "",
+          "class": "",
+          "method": "",
+          "description": ""
+        }
+      ],
+      "edam": {
+        "term": "",
+        "id": "",
+        "match_type": "",
+        "verified": false
+      },
+      "confidence": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "",
+      "extensions": [],
+      "data_type": "",
+      "primary_or_supporting": "",
+      "evidence": [
+        {
+          "file": "",
+          "class": "",
+          "method": "",
+          "description": ""
+        }
+      ],
+      "edam": {
+        "term": "",
+        "id": "",
+        "match_type": "",
+        "verified": false
+      },
+      "confidence": ""
+    }
+  ],
+  "limitations": []
+}
+```
+
+### JSON requirements
+
+* Use only findings supported by repository evidence.
+* Do not invent repository files, classes, methods, formats, or EDAM IDs.
+* Only set `"verified": true` when the EDAM ID has been checked against the official EDAM ontology.
+* Use `null` for an EDAM ID that cannot be verified.
+* Use `"exact"`, `"broader"`, `"related"`, or `"unavailable"` for `match_type`.
+* Include unsupported or uncertain formats in `limitations` rather than incorrectly listing them as confirmed inputs or outputs.
+* Keep the JSON valid and machine-readable.
+* Do not include explanatory prose outside the JSON when responding to this prompt.
+
+The purpose of this structured output is to make the analysis reproducible and scalable to a large number of bioinformatics tools.
+
+---
+
+## Agent and Model Information
+
+When performing the analysis, record the coding agent and model used.
+
+For example:
+
+* Coding agent: GitHub Copilot
+* Model: Auto
+
+or:
+
+* Coding agent: Antigravity
+* Model: Gemini 3.5 Flash Medium
+
+If the model cannot be determined, explicitly report it as unknown rather than guessing.
