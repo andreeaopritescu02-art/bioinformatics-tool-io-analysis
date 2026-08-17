@@ -27,6 +27,19 @@ The repository was analysed using two coding agents, GitHub Copilot and Antigrav
 
 ### Evidence
 
+## AI Models Used
+
+Two coding agents were used independently during the FastQC analysis:
+
+| Coding Agent | Model |
+|---|---|
+| GitHub Copilot | Auto |
+| Antigravity | Gemini 3.5 Flash Medium |
+
+GitHub Copilot was used for the initial repository analysis, while Antigravity was used as an independent second analysis to identify additional input/output formats and potential discrepancies.
+
+The results from both agents were compared and manually verified against the FastQC source code and the EDAM ontology.
+
 Manual verification:
 
 * `FastQFile.java` implements FASTQ file processing and handles compressed FASTQ input.
