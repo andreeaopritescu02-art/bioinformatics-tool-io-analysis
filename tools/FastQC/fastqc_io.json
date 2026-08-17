@@ -1,0 +1,227 @@
+{
+  "tool": "FastQC",
+  "repository": "https://github.com/s-andrews/FastQC",
+  "inputs": [
+    {
+      "name": "FASTQ",
+      "extensions": [".fastq", ".fq", ".txt"],
+      "data_type": "Sequence reads with quality scores",
+      "primary_or_additional": "primary",
+      "edam": {
+        "term": "FASTQ",
+        "id": "format_1930",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "FASTQ compressed with gzip",
+      "extensions": [".fastq.gz", ".fq.gz", ".txt.gz"],
+      "data_type": "Compressed FASTQ sequence reads",
+      "primary_or_additional": "additional",
+      "edam": {
+        "term": "FASTQ",
+        "id": "format_1930",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "FASTQ compressed with bzip2",
+      "extensions": [".fastq.bz2", ".fq.bz2", ".txt.bz2"],
+      "data_type": "Compressed FASTQ sequence reads",
+      "primary_or_additional": "additional",
+      "edam": {
+        "term": "FASTQ",
+        "id": "format_1930",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "BAM",
+      "extensions": [".bam"],
+      "data_type": "Sequence alignment data",
+      "primary_or_additional": "primary",
+      "edam": {
+        "term": "BAM",
+        "id": "format_2572",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "SAM",
+      "extensions": [".sam"],
+      "data_type": "Sequence alignment data",
+      "primary_or_additional": "primary",
+      "edam": {
+        "term": "SAM",
+        "id": "format_2573",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "UBAM",
+      "extensions": [".ubam"],
+      "data_type": "Unmapped sequence alignment data",
+      "primary_or_additional": "additional",
+      "edam": {
+        "term": "BAM",
+        "id": "format_2572",
+        "match_type": "broader",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "FAST5",
+      "extensions": [".fast5"],
+      "data_type": "Oxford Nanopore HDF5-based sequencing data",
+      "primary_or_additional": "additional",
+      "edam": {
+        "term": "HDF5",
+        "id": "format_3590",
+        "match_type": "broader",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "csFASTQ",
+      "extensions": [".csfastq"],
+      "data_type": "SOLiD colorspace sequencing reads",
+      "primary_or_additional": "additional",
+      "edam": {
+        "term": "FASTQ",
+        "id": "format_1930",
+        "match_type": "related",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "stdin",
+      "extensions": ["stdin"],
+      "data_type": "FASTQ sequence data supplied through standard input",
+      "primary_or_additional": "special",
+      "edam": {
+        "term": null,
+        "id": null,
+        "match_type": "unavailable",
+        "verified": false
+      },
+      "confidence": "high"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "HTML report",
+      "extensions": [".html"],
+      "data_type": "Quality control report",
+      "primary_or_supporting": "primary",
+      "edam": {
+        "term": "HTML",
+        "id": "format_2331",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "ZIP archive",
+      "extensions": [".zip"],
+      "data_type": "Quality control report archive",
+      "primary_or_supporting": "primary",
+      "edam": {
+        "term": "ZIP format",
+        "id": "format_3987",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "fastqc_data.txt",
+      "extensions": [],
+      "data_type": "Tab-delimited quality control metrics",
+      "primary_or_supporting": "supporting",
+      "edam": {
+        "term": "TSV",
+        "id": "format_3475",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "summary.txt",
+      "extensions": [],
+      "data_type": "Tab-delimited QC status summary",
+      "primary_or_supporting": "supporting",
+      "edam": {
+        "term": "TSV",
+        "id": "format_3475",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "SVG plots",
+      "extensions": [".svg"],
+      "data_type": "Quality control plots",
+      "primary_or_supporting": "supporting",
+      "edam": {
+        "term": "SVG",
+        "id": "format_3604",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "PNG plots and icons",
+      "extensions": [".png"],
+      "data_type": "Quality control graphics and report icons",
+      "primary_or_supporting": "supporting",
+      "edam": {
+        "term": "PNG",
+        "id": "format_3603",
+        "match_type": "exact",
+        "verified": true
+      },
+      "confidence": "high"
+    },
+    {
+      "name": "fastqc.fo",
+      "extensions": [".fo"],
+      "data_type": "XSL Formatting Objects document",
+      "primary_or_supporting": "supporting",
+      "edam": {
+        "term": "XML",
+        "id": "format_2332",
+        "match_type": "broader",
+        "verified": true
+      },
+      "confidence": "high"
+    }
+  ],
+  "limitations": [
+    "FASTA is not a supported FastQC input format.",
+    "Goby is listed in GUI filters but has no verified parser implementation.",
+    "Compact Reads is listed in GUI filters but has no verified parser implementation.",
+    ".bz compression is not actually decompressed by the FastQC parser; .bz2 is supported.",
+    "UBAM is mapped to the broader BAM EDAM concept.",
+    "FAST5 is mapped to the broader HDF5 EDAM concept.",
+    "csFASTQ is mapped to FASTQ as a related EDAM concept.",
+    "stdin is an input mechanism rather than a file format.",
+    "fastqc.fo is mapped to the broader XML EDAM concept."
+  ]
+}
