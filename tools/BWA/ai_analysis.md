@@ -4,8 +4,6 @@
 
 **Repository analyzed:** https://github.com/lh3/bwa
 
-**Analysis date:** 2026-08-17
-
 The coding agent was asked to analyze the BWA repository and identify all file formats accepted as input, providing repository-based evidence for each format.
 
 ## Raw AI Result
