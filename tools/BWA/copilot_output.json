@@ -1,0 +1,272 @@
+{
+  "tool": "BWA",
+  "repository": "https://github.com/lh3/bwa",
+  "inputs": [
+    {
+      "name": "FASTQ sequence reads",
+      "format": "FASTQ",
+      "extensions": [".fq", ".fastq"],
+      "description": "Text-based sequence read format with quality scores. Standard input for all BWA alignment commands (mem, aln, bwasw). Supports gzip-compressed input (.fq.gz, .fastq.gz) via kseq library. Supports Sanger (ASCII-33) and legacy Illumina 1.3+ (ASCII-64, -I flag) quality encodings. Supports standard and interleaved paired-end reads (-p flag).",
+      "role": "primary",
+      "edam": {
+        "term": "FASTQ format",
+        "id": "format_1930",
+        "match_type": "exact",
+        "verification": "not_verified",
+        "verification_source": "EDAM ontology ID format_1930 documented at https://edamontology.org/format_1930; cannot access EDAM.owl programmatically within repository constraints"
+      },
+      "evidence": [
+        {
+          "file": "bwa.1",
+          "location": "lines 9-19, 119-120",
+          "description": "Man page synopsis examples: 'bwa mem ref.fa reads.fq > aln-se.sam' and 'bwa mem ref.fa read1.fq read2.fq > aln-pe.sam'"
+        },
+        {
+          "file": "fastmap.c",
+          "location": "line 432",
+          "description": "Usage string: 'Usage: bwa fastmap [options] <idxbase> <in.fq>'"
+        },
+        {
+          "file": "README.md",
+          "location": "lines 99-117",
+          "description": "FAQ section documenting FASTQ input for all read types and sequencing platforms"
+        },
+        {
+          "file": "bwa.1",
+          "location": "lines 457-458, 281-284",
+          "description": "Documentation of -I flag (Illumina 1.3+ ASCII-64) and -p flag (interleaved pairing)"
+        }
+      ]
+    },
+    {
+      "name": "FASTA reference sequence",
+      "format": "FASTA",
+      "extensions": [".fa", ".fasta"],
+      "description": "Text-based sequence format for reference genome. Required input for 'bwa index' command to construct FM-index. Supports gzip-compressed input (.fa.gz, .fasta.gz). Single or multiple reference sequences per file.",
+      "role": "reference",
+      "edam": {
+        "term": "FASTA format",
+        "id": "format_1929",
+        "match_type": "exact",
+        "verification": "not_verified",
+        "verification_source": "EDAM ontology ID format_1929 documented at https://edamontology.org/format_1929; cannot access EDAM.owl programmatically within repository constraints"
+      },
+      "evidence": [
+        {
+          "file": "bwa.1",
+          "location": "lines 52-54",
+          "description": "Index command documentation: 'Index database sequences in the FASTA format.'"
+        },
+        {
+          "file": "bwtindex.c",
+          "location": "lines 235-250",
+          "description": "bwa_index() function expects FASTA input; processes via bns_fasta2bntseq()"
+        },
+        {
+          "file": "README.md",
+          "location": "line 20",
+          "description": "Getting started: './bwa index ref.fa'"
+        }
+      ]
+    },
+    {
+      "name": "BAM sequence reads",
+      "format": "BAM",
+      "extensions": [".bam"],
+      "description": "Binary compressed format containing sequence reads (not alignments). Alternative input to FASTQ for 'bwa aln' command with -b flag. Requires reads to be name-grouped for paired-end data. Paired reads selected via -0 (single-end only), -1 (first read), or -2 (second read).",
+      "role": "additional",
+      "edam": {
+        "term": "BAM format",
+        "id": "format_2573",
+        "match_type": "exact",
+        "verification": "not_verified",
+        "verification_source": "EDAM ontology ID format_2573 documented at https://edamontology.org/format_2573; cannot access EDAM.owl programmatically within repository constraints"
+      },
+      "evidence": [
+        {
+          "file": "bwa.1",
+          "location": "lines 468-495",
+          "description": "-b flag documentation: 'Specify the input read sequence file is the BAM format. For paired-end data, two ends in a pair must be grouped together and options -1 or -2 are usually applied.'"
+        },
+        {
+          "file": "bwtaln.c",
+          "location": "line 283",
+          "description": "Usage help: '-b        the input read file is in the BAM format'"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "SAM alignment records",
+      "format": "SAM",
+      "extensions": [".sam"],
+      "description": "Text-based sequence alignment format. Primary output of all BWA alignment commands (bwa mem, bwa aln via samse/sampe, bwa bwasw). Tab-delimited records with mandatory fields QNAME, FLAG, RNAME, POS, MAPQ, CIGAR, RNEXT, PNEXT, TLEN, SEQ, QUAL. Includes standard optional fields (NM, MD) and BWA-specific optional fields (AS, XA, XS, XN, XM, XO, XG, XT). Default output to stdout; redirected with -o or -f flag.",
+      "role": "primary",
+      "edam": {
+        "term": "SAM format",
+        "id": "format_2572",
+        "match_type": "exact",
+        "verification": "not_verified",
+        "verification_source": "EDAM ontology ID format_2572 documented at https://edamontology.org/format_2572; cannot access EDAM.owl programmatically within repository constraints"
+      },
+      "evidence": [
+        {
+          "file": "bwa.1",
+          "location": "lines 616-698",
+          "description": "Comprehensive SAM format specification documenting all mandatory fields, SAM flags, and optional tags"
+        },
+        {
+          "file": "bwamem.c",
+          "location": "lines 851-976",
+          "description": "mem_aln2sam() function generates complete SAM records with mandatory and optional fields"
+        },
+        {
+          "file": "README.md",
+          "location": "lines 99-117",
+          "description": "Example commands showing SAM output: 'bwa mem ref.fa reads.fq > aln.sam'"
+        }
+      ]
+    },
+    {
+      "name": "BWA FM-index reference files",
+      "format": "BWA FM-index (proprietary binary collection)",
+      "extensions": [".bwt", ".pac", ".sa", ".ann", ".amb"],
+      "description": "Five binary files forming the FM-index for reference genome. Created by 'bwa index' command. Required for all alignment operations. Components: .bwt (Burrows-Wheeler Transform), .pac (2-bit packed sequence), .sa (sampled suffix array), .ann (sequence annotations), .amb (ambiguous base positions). All five files must exist together.",
+      "role": "reference",
+      "edam": {
+        "term": "Binary sequence alignment format",
+        "id": "format_3327",
+        "match_type": "close",
+        "verification": "not_verified",
+        "verification_source": "format_3327 is closest available EDAM term; BWA FM-index is proprietary format without specific EDAM definition"
+      },
+      "evidence": [
+        {
+          "file": "bwtindex.c",
+          "location": "lines 267-322",
+          "description": "bwa_idx_build() creates .pac (packed sequence), .bwt (BWT), .sa (suffix array), .ann and .amb (annotations/ambiguous) files via bns_fasta2bntseq() and BWT construction"
+        },
+        {
+          "file": "bwakit/run-bwamem",
+          "location": "lines 51-52",
+          "description": "File existence verification: 'unless (-f \"$idx.bwt\" && -f \"$idx.pac\" && -f \"$idx.sa\" && -f \"$idx.ann\" && -f \"$idx.amb\")'"
+        },
+        {
+          "file": "bwa.1",
+          "location": "lines 46-74",
+          "description": "Index command documentation describes FM-index output components"
+        }
+      ]
+    },
+    {
+      "name": "SAI suffix array indices (BWA-backtrack intermediate)",
+      "format": "SAI (proprietary binary)",
+      "extensions": [".sai"],
+      "description": "Binary intermediate format produced by 'bwa aln' command containing suffix array coordinates of input reads. Used as input to 'bwa samse' (single-end) or 'bwa sampe' (paired-end) to generate SAM output. Specific to BWA-backtrack algorithm. Transient intermediate file.",
+      "role": "intermediate",
+      "edam": {
+        "term": "Binary sequence alignment format",
+        "id": "format_3327",
+        "match_type": "close",
+        "verification": "not_verified",
+        "verification_source": "format_3327 is closest available EDAM term; SAI is proprietary BWA format without specific EDAM definition"
+      },
+      "evidence": [
+        {
+          "file": "bwa.1",
+          "location": "lines 13, 383-385",
+          "description": "Man page examples and description: 'bwa aln ref.fa short_read.fq > aln_sa.sai' with note 'Find the SA coordinates of the input reads'"
+        },
+        {
+          "file": "README.md",
+          "location": "lines 103-112",
+          "description": "BWA-backtrack workflow: 'bwa aln ref.fa reads.fq > reads.sai; bwa samse ref.fa reads.sai reads.fq > aln-se.sam'"
+        },
+        {
+          "file": "bwase.c",
+          "location": "lines 529-570",
+          "description": "bwa_sai2sam_se_core() reads SAI format; checks SAI magic and reads coordinates"
+        }
+      ]
+    },
+    {
+      "name": "BAM alignments (bwakit pipeline only)",
+      "format": "BAM",
+      "extensions": [".bam"],
+      "description": "Binary compressed alignment format. OUTPUT OF BWAKIT PIPELINE ONLY; NOT CORE BWA OUTPUT. Produced by bwakit run-bwamem script piping SAM output through samtools for BAM conversion. Contains alignment records. Generated externally; not directly by BWA core commands.",
+      "role": "primary",
+      "edam": {
+        "term": "BAM format",
+        "id": "format_2573",
+        "match_type": "exact",
+        "verification": "not_verified",
+        "verification_source": "EDAM ontology ID format_2573 documented at https://edamontology.org/format_2573; cannot access EDAM.owl programmatically within repository constraints"
+      },
+      "evidence": [
+        {
+          "file": "bwakit/README.md",
+          "location": "lines 30-35",
+          "description": "Output file documentation: '* `out.aln.bam`: unsorted alignments with ALT-aware mapping quality.'"
+        },
+        {
+          "file": "bwakit/run-bwamem",
+          "location": "lines 55-68",
+          "description": "Pipeline output files: '{-o}.aln.bam - final alignment'"
+        }
+      ]
+    },
+    {
+      "name": "HLA genotype predictions",
+      "format": "Text report (domain-specific, no EDAM equivalent)",
+      "extensions": [".hla.top", ".hla.all"],
+      "description": "Plain text HLA typing reports. OUTPUT OF BWAKIT PIPELINE ONLY; NOT CORE BWA OUTPUT. Two files generated when -H flag specified: .hla.top contains best genotypes for six classical HLA genes (A, B, C, DQA1, DQB1, DRB1); .hla.all contains alternative predictions. Format not documented in repository; generated by external HLA typing module.",
+      "role": "auxiliary",
+      "edam": {
+        "term": null,
+        "id": null,
+        "match_type": "none",
+        "verification": "not_verified",
+        "verification_source": "No EDAM term exists for HLA genotype prediction reports; domain-specific output format"
+      },
+      "evidence": [
+        {
+          "file": "bwakit/README.md",
+          "location": "lines 37-39",
+          "description": "'* `out.hla.top`: best genotypes for HLA-A, -B, -C, -DQA1, -DQB1 and -DRB1 genes.' and '* `out.hla.all`: other possible genotypes on the six HLA genes.'"
+        },
+        {
+          "file": "bwakit/run-bwamem",
+          "location": "lines 55-68",
+          "description": "Output files: '{-o}.hla.top - best genotypes for the 6 classical HLA genes' and '{-o}.hla.all - additional HLA genotypes consistent with data'"
+        }
+      ]
+    },
+    {
+      "name": "Pipeline log files (bwakit only)",
+      "format": "Plain text logs (no EDAM equivalent)",
+      "extensions": [".log", ".log.*"],
+      "description": "Diagnostic log files. OUTPUT OF BWAKIT PIPELINE ONLY; NOT CORE BWA OUTPUT. Generated by bwakit run-bwamem pipeline with multiple log files for different tools (bwa-mem, samblaster, HLA typing). Contains progress messages, timing information, and warnings.",
+      "role": "auxiliary",
+      "edam": {
+        "term": null,
+        "id": null,
+        "match_type": "none",
+        "verification": "not_verified",
+        "verification_source": "No EDAM term exists for plain-text diagnostic log files"
+      },
+      "evidence": [
+        {
+          "file": "bwakit/README.md",
+          "location": "lines 40-42",
+          "description": "'* `out.log.*`: bwa-mem, samblaster and HLA typing log files.'"
+        },
+        {
+          "file": "bwakit/run-bwamem",
+          "location": "lines 55-68",
+          "description": "Output files: '{-o}.log.*   - log files'"
+        }
+      ]
+    }
+  ]
+}
