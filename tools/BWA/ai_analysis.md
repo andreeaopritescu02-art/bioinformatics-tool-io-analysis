@@ -239,4 +239,4 @@ Some entries represent variants or usage modes of existing formats rather than d
 * BWA index files are reference index files rather than biological sequence formats.
 * SAM and MAG require additional verification because the evidence comes from auxiliary `bwakit` scripts rather than the core BWA commands.
 
-The verified classification is documented separately in `analysis.md`.
+The verified classification will be documented separately after repository-based verification.
