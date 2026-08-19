@@ -219,15 +219,17 @@ Log files	Identified	Confirmed as bwakit output
 Manual verification confirmed the coding-agent findings against the repository source code and documentation.
 
 EDAM Mapping
-Input/Output	EDAM term	EDAM ID	Match type	Confidence
-FASTQ	FASTQ format	format_1930	Exact	High
-FASTA	FASTA format	format_1929	Exact	High
-BAM	BAM format	format_2573	Exact	High
-SAM	SAM format	format_2572	Exact	High
-SAI	N/A	N/A	No specific term	High
-BWA index files	N/A	N/A	No specific term	High
-HLA reports	N/A	N/A	No specific term	High
-Log files	N/A	N/A	No specific term	High
+| Input/Output | EDAM term | EDAM ID | Match type | Verification |
+|---|---|---|---|---|
+| FASTQ | FASTQ | `format_1930` | Exact | Programmatically verified |
+| FASTA | FASTA | `format_1929` | Exact | Programmatically verified |
+| SAM | SAM | `format_2573` | Exact | Programmatically verified |
+| BAM | BAM | `format_2572` | Exact | Programmatically verified |
+| BWA FM-index | N/A | N/A | No specific EDAM term | Not applicable |
+| SAI | N/A | N/A | No specific EDAM term | Not applicable |
+| HLA genotype reports | N/A | N/A | No specific EDAM term | Not applicable |
+| Pipeline logs | N/A | N/A | No specific EDAM term | Not applicable |
+
 EDAM Mapping Limitations
 SAI is a proprietary BWA-specific intermediate format and has no specific EDAM format term.
 The .bwt, .pac, .sa, .ann and .amb files are proprietary BWA index components and are not mapped to a generic binary format term.
