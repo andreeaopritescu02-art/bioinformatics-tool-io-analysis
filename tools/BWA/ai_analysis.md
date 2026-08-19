@@ -154,8 +154,8 @@ Suggested and verified mappings:
 | ----- | --------- | ------------- | --------------- |
 | FASTA | FASTA     | `format_1929` | High - verified |
 | FASTQ | FASTQ     | `format_1930` | High - verified |
-| BAM   | BAM       | `format_2573` | High - verified |
-| SAM   | SAM       | `format_2572` | High - verified |
+| BAM   | BAM       | `format_2572` | High - verified |
+| SAM   | SAM       | `format_2573` | High - verified |
 
 For BWA-specific formats such as SAI and the reference-index components (`.bwt`, `.pac`, `.ann`, `.amb`, `.sa`), no reliable exact EDAM mapping was established.
 
