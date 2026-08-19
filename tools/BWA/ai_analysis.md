@@ -187,13 +187,13 @@ The coding agent verified the following input formats:
 
 * FASTA → `format_1929` — Exact
 * FASTQ → `format_1930` — Exact
-* BAM → `format_2573` — Exact
+* BAM → `format_2572` — Exact
 * Interleaved FASTQ → `format_1930` — Exact, as a variant of FASTQ
 
 The agent verified the following output formats:
 
-* SAM → `format_2572` — Exact
-* BAM → `format_2573` — Exact for the `bwakit` pipeline
+* SAM → `format_2573` — Exact
+* BAM → `format_2572` — Exact for the `bwakit` pipeline
 * SAI → no specific EDAM term verified
 * `.bwt`, `.pac`, `.ann`, `.amb`, `.sa` → no specific EDAM term verified
 
@@ -335,7 +335,7 @@ The final verified standard mappings are:
 | ----- | --------- | ------------- | --------------- |
 | FASTA | FASTA     | `format_1929` | High - verified |
 | FASTQ | FASTQ     | `format_1930` | High - verified |
-| BAM   | BAM       | `format_2573` | High - verified |
-| SAM   | SAM       | `format_2572` | High - verified |
+| BAM   | BAM       | `format_2572` | High - verified |
+| SAM   | SAM       | `format_2573` | High - verified |
 
 ## Manual verification is required before accepting all suggested formats and EDAM mappings.
