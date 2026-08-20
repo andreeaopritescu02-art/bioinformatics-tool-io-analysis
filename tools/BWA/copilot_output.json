@@ -77,7 +77,7 @@
       "role": "additional",
       "edam": {
         "term": "BAM format",
-        "id": "format_2573",
+        "id": "format_2572",
         "match_type": "exact",
         "verification": "not_verified",
         "verification_source": "EDAM ontology ID format_2573 documented at https://edamontology.org/format_2573; cannot access EDAM.owl programmatically within repository constraints"
@@ -135,11 +135,11 @@
       "description": "Five binary files forming the FM-index for reference genome. Created by 'bwa index' command. Required for all alignment operations. Components: .bwt (Burrows-Wheeler Transform), .pac (2-bit packed sequence), .sa (sampled suffix array), .ann (sequence annotations), .amb (ambiguous base positions). All five files must exist together.",
       "role": "reference",
       "edam": {
-        "term": "Binary sequence alignment format",
-        "id": "format_3327",
-        "match_type": "close",
+        "term": null,
+        "id": null,
+        "match_type": "none",
         "verification": "not_verified",
-        "verification_source": "format_3327 is closest available EDAM term; BWA FM-index is proprietary format without specific EDAM definition"
+        "verification_source": "BWA-specific proprietary format; no specific EDAM format term established, as documented in analysis.md"
       },
       "evidence": [
         {
@@ -166,11 +166,11 @@
       "description": "Binary intermediate format produced by 'bwa aln' command containing suffix array coordinates of input reads. Used as input to 'bwa samse' (single-end) or 'bwa sampe' (paired-end) to generate SAM output. Specific to BWA-backtrack algorithm. Transient intermediate file.",
       "role": "intermediate",
       "edam": {
-        "term": "Binary sequence alignment format",
-        "id": "format_3327",
-        "match_type": "close",
+        "term": null,
+        "id": null,
+        "match_type": "none",
         "verification": "not_verified",
-        "verification_source": "format_3327 is closest available EDAM term; SAI is proprietary BWA format without specific EDAM definition"
+        "verification_source": "BWA-specific proprietary format; no specific EDAM format term established, as documented in analysis.md"
       },
       "evidence": [
         {
