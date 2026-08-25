@@ -293,3 +293,83 @@ The main output formats are supported by documentation and source-code evidence.
 
 
 ## Manual verification is required before accepting all suggested formats.
+
+---
+
+## Prompt 4 - Integrated Assessment and Confidence
+
+### Integrated Assessment
+
+The findings from Prompts 1-3 were reviewed together, with particular attention to repository evidence, the distinction between primary and supporting formats, and the programmatic EDAM verification results.
+
+### Inputs
+
+| Input | Format | Extensions | Data Type | EDAM Term | EDAM ID | Verified | Confidence |
+|---|---|---|---|---|---|---|---|
+| SAM | SAM | `.sam` | Sequence alignment | SAM | `format_2573` | Yes | High |
+| BAM | BAM | `.bam` | Sequence alignment | BAM | `format_2572` | Yes | High |
+| CRAM | CRAM | `.cram` | Sequence alignment | CRAM | `format_3462` | Yes | High |
+| FASTQ | FASTQ | `.fastq`, `.fq` | Raw sequencing reads | FASTQ | `format_1930` | Yes | High |
+| FASTA | FASTA | `.fasta`, `.fa` | Nucleotide sequence | FASTA | `format_1929` | Yes | High |
+| BED | BED | `.bed` | Genomic regions / annotation | BED | `format_3003` | Yes | High |
+
+### Outputs
+
+| Output | Format | Extensions | Data Type | EDAM Term | EDAM ID | Verified | Confidence |
+|---|---|---|---|---|---|---|---|
+| BAM | BAM | `.bam` | Sequence alignment | BAM | `format_2572` | Yes | High |
+| SAM | SAM | `.sam` | Sequence alignment | SAM | `format_2573` | Yes | High |
+| CRAM | CRAM | `.cram` | Sequence alignment | CRAM | `format_3462` | Yes | High |
+| FASTA | FASTA | `.fasta`, `.fa` | Nucleotide sequence | FASTA | `format_1929` | Yes | High |
+| FASTQ | FASTQ | `.fastq`, `.fq` | Raw sequencing reads | FASTQ | `format_1930` | Yes | High |
+| Pileup | Pileup | text output | Alignment / coverage information | null | null | No | Medium |
+| Sequence Dictionary | SAM-style sequence dictionary | `.dict` | Reference sequence metadata | null | null | No | Medium |
+
+### Supporting and Internal Outputs
+
+| Output | Format | Extension | Role | EDAM ID | Verified | Confidence |
+|---|---|---|---|---|---|---|
+| BAM index | BAI | `.bai` | Supporting | `format_3327` | Yes | High |
+| CSI | CSI | `.csi` | Supporting | null | No | Medium |
+| CRAM index | CRAI | `.crai` | Supporting | null | No | Medium |
+| FASTA index | FAI | `.fai` | Supporting | null | No | Medium |
+| FASTQ index | FQIDX | `.fqidx` | Supporting | null | No | Medium |
+| Temporary BAM | BAM | temporary files | Internal | `format_2572` | Yes | Medium |
+
+### Text Reports
+
+SAMtools commands such as `stats`, `flagstat`, `idxstats`, `depth`, `coverage`, `mpileup`, `ampliconstats`, `checksum`, and `cram-size` can generate textual command output.
+
+These outputs are treated as textual reports or command output rather than distinct biological file formats. They should not automatically be assigned EDAM file-format identifiers.
+
+### Confidence Assessment
+
+The following findings have high confidence because they are supported by repository documentation and/or source-code evidence:
+
+- SAM, BAM, CRAM, FASTQ, FASTA, and BED as primary inputs.
+- BAM, SAM, CRAM, FASTA, FASTQ, Pileup, and Sequence Dictionary as primary outputs.
+- BAI as a supporting index with a verified EDAM mapping.
+
+The following require additional caution:
+
+- CSI, CRAI, FAI, and FQIDX are supporting index files rather than primary biological inputs or outputs.
+- Temporary BAM files are internal processing artifacts rather than primary user-facing outputs.
+- Textual reports are command outputs and should not automatically be treated as independent biological file formats.
+- No verified EDAM identifier was established for FAI, CRAI, CSI, FQIDX, Pileup, or Sequence Dictionary.
+- The verified EDAM mappings were checked against the official EDAM ontology.
+
+### Overall Assessment
+
+The main SAMtools input and output formats are strongly supported by repository documentation and source-code evidence. The EDAM mappings for SAM, BAM, CRAM, FASTQ, FASTA, BED, and BAI were programmatically verified against the official EDAM ontology.
+
+Supporting indexes, temporary files, and textual command reports should remain distinct from the primary biological formats. EDAM identifiers should not be guessed for items where programmatic verification did not establish a valid mapping.
+
+### Manual Verification Requirements
+
+Manual verification is recommended for:
+
+- the exact role of FQIDX as a supporting format;
+- the distinction between primary and supporting outputs for individual SAMtools subcommands;
+- the EDAM classification of Pileup and Sequence Dictionary;
+- any format for which the current ontology verification returned no matching EDAM term.
+
