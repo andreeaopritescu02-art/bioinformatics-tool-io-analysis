@@ -319,12 +319,12 @@ def main():
         # Sequence Alignment Formats
         ("SAM", "SAM", "format_2573", "file_format", "Prompt 1-2"),
         ("BAM", "BAM", "format_2572", "file_format", "Prompt 1-2"),
-        ("CRAM", "CRAM", "format_3466", "file_format", "Prompt 1-2"),
+        ("CRAM", "CRAM", "format_3462", "file_format", "Prompt 1-2"),
         
         # Sequence Formats
         ("FASTQ", "FASTQ", "format_1930", "file_format", "Prompt 1-2"),
         ("FASTA", "FASTA", "format_1929", "file_format", "Prompt 1-2"),
-        ("FASTA index", "FAI", "format_3325", "file_format", "Prompt 1-2"),
+        ("FASTA index", "FAI", None, "file_format", "Prompt 1-2"),
         
         # Genomic Region Formats
         ("BED", "BED", "format_3003", "file_format", "Prompt 1"),
@@ -334,16 +334,16 @@ def main():
         ("BCF", "BCF", "format_3020", "file_format", "Extended"),
         
         # Index Formats
-        ("BAM index", "BAI", "format_3326", "file_format", "Prompt 1-2"),
+        ("BAM index", "BAI", "format_3327", "file_format", "Prompt 1-2"),
         ("CRAM index", "CRAI", None, "file_format", "Prompt 1-2"),
         ("CSI", "CSI", None, "file_format", "Prompt 1-2"),
         ("FASTQ index", "FQIDX", None, "file_format", "Prompt 1-2"),
         
         # Data Types
         ("Sequence alignment", "Sequence alignment", "data_0863", "data_type", "Prompt 1-2"),
-        ("Raw sequence reads", "Raw sequence reads", "data_2044", "data_type", "Prompt 1-2"),
-        ("Nucleotide sequence", "Nucleotide sequence", "data_2977", "data_type", "Prompt 1-2"),
-        ("Genomic region", "Genomic region", "data_3002", "data_type", "Prompt 1-2"),
+        ("Sequence", "Sequence", "data_2044", "data_type", "Prompt 1-2"),
+        ("Nucleic acid sequence", "Nucleic acid sequence", "data_2977", "data_type", "Prompt 1-2"),
+        ("Annotation track", "Annotation track", "data_3002", "data_type", "Prompt 1-2"),
     ]
     
     # Step 1: Download EDAM.owl
