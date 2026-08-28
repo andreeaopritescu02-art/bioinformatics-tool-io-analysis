@@ -91,9 +91,7 @@ bioinformatics-tool-io-analysis/
 │
 ├── prompts/
 │
-├── report/
-│
-└── references/
+
 ```
 
 Each tool directory contains the analysis and supporting files associated with that tool.
